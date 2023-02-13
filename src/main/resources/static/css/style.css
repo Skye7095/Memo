@@ -13,6 +13,11 @@ header {
 .contents > .join-box {
 	width:350px;
 }
+
+.input-box {
+	width: 700px;
+}
+
 footer {
 	height:50px;
 	background-color:#dddddd;
