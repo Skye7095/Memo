@@ -28,10 +28,10 @@
 					<textarea rows="10" class="form-control" id="contentInput"></textarea>
 				</div>
 				<div class="mt-3">
-					<input type="file">
+					<input type="file" id="fileInput">
 				</div>
 				<div class="d-flex justify-content-between mt-3">
-					<button type="button" class="btn btn-info">목록으로</button>
+					<a href="/post/list/view" class="btn btn-info">목록으로</a>
 					<button type="button" class="btn btn-primary" id="saveBtn">저장</button>
 				</div>
 			</div>
@@ -56,13 +56,18 @@
 					return;
 				}
 				
-				console.log(title);
-				console.log(content);
+				var formData = new FormData();
+				formData.append("title", title);
+				formData.append("content", content);
+				formData.append("file", $("#fileInput")[0].files[0]);
 				
 				$.ajax({
 					type:"post"
 					, url:"/post/create"
-					, data:{"title":title, "content":content}
+					, data:formData
+					, enctype:"multipart/form-data" // 파일 업로드 필수 항목
+					, processData:false // 파일 업로드 필수 항목
+					, contentType:false // 파일 업로드 필수 항목
 					, success:function(data){
 						if(data.result == "success"){
 							location.href = "/post/list/view";
