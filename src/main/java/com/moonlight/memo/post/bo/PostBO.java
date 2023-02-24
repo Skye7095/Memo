@@ -29,4 +29,19 @@ public class PostBO {
 	public Post getPost(int postId) {
 		return postDAO.selectPost(postId);
 	}
+	
+	public int updatePost(int postId, String title, String content) {
+		return postDAO.updatePost(postId, title, content);
+	}
+	
+	public int deletePost(int postId) {
+		
+		Post post = postDAO.selectPost(postId);
+		
+		if(post.getImagePath() != null) {
+			FileManagerService.removeFile(post.getImagePath());
+		}
+		
+		return postDAO.deletePost(postId);
+	}
 }

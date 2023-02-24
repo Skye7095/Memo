@@ -55,7 +55,7 @@
 					, data:{"loginId":id, "password":password}
 					, success:function(data){
 						if(data.result == "success"){
-							location.href = "/post/create/view";
+							location.href = "/post/list/view";
 						}else{
 							alert("아이디나 비밀번호를 확인해주세요.");
 						}
